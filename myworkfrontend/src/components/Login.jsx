@@ -12,8 +12,13 @@ const Login = () => {
     const dispatch = useDispatch();
     const loginData  = async (e) => {
         e.preventDefault();
-        login(dispatch, { email, password });
-        window.location.reload(false);
+        try{
+           await login(dispatch, { email, password });
+            window.location.reload(false);
+        }catch(error){
+            
+        }
+       
     }    
 
     return (
@@ -52,7 +57,7 @@ const Login = () => {
                     <Row className='my-5 mx-lg-5 mx-md-5'>
                         <Col lg={4} md={3}></Col>
                         <Col xs={12} lg={4} md={6} className="text-center">
-                            <Form className='omb_loginForm' autoComplete='off'>
+                            <Form className='omb_loginForm' autoComplete='off' onSubmit={loginData}>
                                 <div className='input-group-md mb-3'>
                                     <span className="input-group-addon"><i className="fa fa-user"></i></span>
                                     <Form.Control type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter Email" required>
@@ -64,7 +69,7 @@ const Login = () => {
                                     <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} name="password" placeholder="password" required >
                                     </Form.Control>
                                 </div>
-                                <Button className='btn btn-md btn-primary' style={{ width: "100%" }} onClick={loginData}>
+                                <Button type='submit' className='btn btn-md btn-primary' style={{ width: "100%" }}>
                                     Login
                                 </Button>
                             </Form>

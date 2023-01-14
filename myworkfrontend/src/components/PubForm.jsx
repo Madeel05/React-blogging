@@ -11,7 +11,7 @@ const PubForm =  (props) => {
     const submitPost = async (e) => {
         e.preventDefault();
         try{
-            const post = await clientRequest.post('posts', {title, description, username, email});
+            await clientRequest.post('posts', {title, description, username, email});
             setTitle('');
             setDescription('');
             props.postFuntion();
@@ -33,7 +33,7 @@ const PubForm =  (props) => {
                     <Form.Label>Description:</Form.Label>
                     <Form.Control as='textarea' rows='3' name='description' value={description} onChange={(e) => setDescription(e.target.value)} placeholder="What are you thinking?" required/>
                 </Form.Group>
-                <Button type="submit">Published</Button>
+                <Button type="submit" className='btn-radius px-3 py-2'>Published</Button>
             </Form>
         </>
     )

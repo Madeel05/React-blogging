@@ -121,7 +121,6 @@ const Home = () => {
                                     <div className="h6 text-muted"><i ><ImageSharp className='text-primary' /></i> Blogs</div>
                                     <div className="h5">{postsCount}</div>
                                 </li>
-                                <li className="list-group-item">Vestibulum at eros</li>
                             </ul>
                         </Card>
                     </Col>
@@ -144,7 +143,7 @@ const Home = () => {
                                 </Tabs>
                             </Card.Body>
                         </Card>
-                        {homePosts.map(item => <Post data={item} key={item._id} />)}
+                        {homePosts.map(item => <Post data={item} postFuntion={getPosts} page='home' countFunction={getPostsCount} key={item._id} />)}
                     </Col>
                     <Col lg={3} md={3}>
                         <Card className='gedf-card mt-3 mt-lg-0 mt-md-0'>
@@ -155,7 +154,7 @@ const Home = () => {
                                 <Row>
                                     <Col xs={12}>
                                         {
-                                            randomUser.map(item => <UserCard name={item.username} key={item._id} id={item._id} randomUser={getRandomUser} latestUser={getLatestUser} count={getFollowingCount} />)
+                                            randomUser.map(item => <UserCard name={item.username} data={item} key={item._id} id={item._id} randomUser={getRandomUser} latestUser={getLatestUser} count={getFollowingCount} />)
                                         }
                                     </Col>
                                 </Row>
@@ -169,7 +168,7 @@ const Home = () => {
                                 <Row>
                                     <Col xs={12}>
                                         {
-                                            latestUser.map(item => <UserCard name={item.username} key={item._id} id={item._id} randomUser={getRandomUser} latestUser={getLatestUser} count={getFollowingCount} />)
+                                            latestUser.map(item => <UserCard name={item.username} data={item} key={item._id} id={item._id} randomUser={getRandomUser} latestUser={getLatestUser} count={getFollowingCount} />)
                                         }
                                     </Col>
                                 </Row>

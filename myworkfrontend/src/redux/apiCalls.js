@@ -1,5 +1,6 @@
 import { loginFailure, loginStart, loginSuccess } from "./userRedux";
 import { localRequest } from "../axiosRequestFunc";
+import { Alert } from "../components/Alert";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -9,6 +10,6 @@ export const login = async (dispatch, user) => {
     dispatch(loginSuccess(res.data));
   } catch (err) {
     dispatch(loginFailure());
-    console.log(err);
+    Alert('WARNING', `Not Login`, 'warning');
   }
 };

@@ -1,26 +1,24 @@
 import React, { useEffect } from 'react';
-import avatar from "../img/avatar_2x.png";
 import { Button } from 'react-bootstrap';
 import { Alert } from './Alert';
 import { clientRequest } from '../axiosRequestFunc';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const UserCard = (props) => {
 
     var initialState = 'follow';
-    const [followText, setFollowText ] = useState(initialState);
+    const detailPage = useNavigate();
+    const [followText, setFollowText] = useState(initialState);
 
     const folowUser = async (id) => {
         try {
             const follow = await clientRequest.post(`follow/${id}`);
-            // console.log(follow);
-            // props.randomUser();
-            // props.latestUser();
             props.count();
-            if(follow.status === 200){
+            if (follow.status === 200) {
                 setFollowText('Followed')
             }
-            if(follow.status === 201){
+            if (follow.status === 201) {
                 setFollowText('Follow')
                 Alert('Unfolowed', `You Unfollowed This User`, 'warning');
             }
@@ -35,7 +33,7 @@ const UserCard = (props) => {
                 const check = await clientRequest.get(`follow/checkFollow/${props.id}`);
                 if (check.status === 201) {
                     setFollowText(initialState);
-                }else if(check.status === 200){
+                } else if (check.status === 200) {
                     setFollowText('Followed');
                 }
             } catch (error) {
@@ -47,10 +45,11 @@ const UserCard = (props) => {
 
     return (
         <>
-            <div className="d-flex justify-content-between align-items-center friend-state">
+        {console.log(props.data)}
+            <div className="d-flex justify-content-between align-items-center friend-state" onClick={() => detailPage(`userDetail/${props.id}`)}>
                 <div className="d-flex">
                     <div>
-                        <img className="rounded-circle" src={avatar} width="30" alt="" />
+                    <img className="rounded-circle activator" src={props.data ? props.data.image : ''} width="35" height="35" alt="" />
                     </div>
                     <div className="mx-2 my-1 h7">
                         {props.name}

@@ -111,7 +111,6 @@ const Following = () => {
                                     <div className="h6 text-muted"><i ><ImageSharp className='text-primary' /></i> Blogs</div>
                                     <div className="h5">{postsCount}</div>
                                 </li>
-                                <li className="list-group-item">Vestibulum at eros</li>
                             </ul>
                         </Card>
                     </Col>

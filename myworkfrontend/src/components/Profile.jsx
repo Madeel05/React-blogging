@@ -4,23 +4,26 @@ import { Container, Card, Form, Button, Col, Nav, Row, Tab } from 'react-bootstr
 import { clientRequest, userRequest } from '../axiosRequestFunc';
 import { Alert } from './Alert';
 import Post from "../components/Post";
+import FileBase64 from 'react-file-base64';
 
 const Profile = () => {
     const userId = JSON.parse(localStorage.getItem("persist:root")) != null && JSON.parse(JSON.parse(localStorage.getItem("persist:root")).currentUser) != null ? JSON.parse(JSON.parse(localStorage.getItem("persist:root")).currentUser)._id : null;
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
+    const [image, setImage] = useState("");
     const [description, setDescription] = useState();
     const [Posts, setPosts] = useState();
 
-    useEffect(() => {
-        const getPosts = async () => {
-            try {
-                const count = await clientRequest.get('posts/user');
-                setPosts(count.data);
-            } catch (error) {
-                console.log(error);
-            }
+    const getPosts = async () => {
+        try {
+            const count = await clientRequest.get('posts/user');
+            setPosts(count.data);
+        } catch (error) {
+            console.log(error);
         }
+    }
+
+    useEffect(() => {
         getPosts();
     }, []);
 
@@ -31,6 +34,7 @@ const Profile = () => {
                 setUsername(user.data.username);
                 setEmail(user.data.email);
                 setDescription(user.data.description);
+                setImage(user.data.image);
             }
             catch (err) {
                 console.log(err);
@@ -42,7 +46,7 @@ const Profile = () => {
     const updateUser = async (e) => {
         e.preventDefault();
         try {
-            const user = await userRequest.put(`users/${userId}`, { username, email, description });
+            const user = await userRequest.put(`users/${userId}`, { username, email, description, image });
             Alert('success', 'Profile Updated', 'success');
             console.log(user);
         } catch (error) {
@@ -83,6 +87,16 @@ const Profile = () => {
                                                 <Col sm={12}>
                                                     <Form autoComplete='off' onSubmit={updateUser} >
                                                         <Form.Group className='mb-3'>
+                                                            <Form.Label>Profile Image:</Form.Label>
+                                                            <FileBase64
+                                                                type="file"
+                                                                multiple={false}
+                                                                required='required'
+                                                                value={image}
+                                                                onDone={({ base64 }) => setImage(base64)}
+                                                            />
+                                                        </Form.Group>
+                                                        <Form.Group className='mb-3'>
                                                             <Form.Label>Username:</Form.Label>
                                                             <Form.Control type='text' name='username' value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Your Name" required />
                                                         </Form.Group>
@@ -103,7 +117,7 @@ const Profile = () => {
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="second">
                                     <Row>
-                                        {Posts?.map(item => <Col lg={6} md={6}> <Post data={item} key={item._id} /></Col>)}
+                                        {Posts?.map(item => <Col lg={6} md={6}> <Post data={item} page='nothome' key={item._id} postFuntion={getPosts} /></Col>)}
                                     </Row>
                                 </Tab.Pane>
                             </Tab.Content>

@@ -14,7 +14,7 @@ const Signup = () => {
     const signupData  = async (e) => {
         e.preventDefault();
         try{
-            const res = await  localRequest.post('auth/signup' , {username, email, password});
+            await  localRequest.post('auth/signup' , {username, email, password});
             loginNavigate('/login');
         }catch(err){
                 console.log(err);

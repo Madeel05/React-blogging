@@ -27,7 +27,7 @@ const PostPage = () => {
             <NavbarTop />
             <div className="container-fluid gedf-wrapper">
                 <Row>
-                    {homePosts.map(item => <Col lg={6} md={6} className=''> <Post data={item} key={item._id} /> </Col>)}
+                    {homePosts.map(item => <Col lg={6} md={6} className=''> <Post data={item} page='nothome' key={item._id} postFuntion={getPosts} /> </Col>)}
                 </Row>
             </div>
         </>

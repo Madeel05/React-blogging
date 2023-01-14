@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import avatar from "../img/avatar_2x.png";
 import { Badge, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { userRequest } from '../axiosRequestFunc';
 
 const FollowCard = (props) => {
@@ -8,6 +8,7 @@ const FollowCard = (props) => {
     const [countPosts, setCountPosts] = useState(0);
     const [countFollower, setCountFollower] = useState(0);
     const [pagaData, setPageData] = useState({}); 
+    const detailPage = useNavigate();
 
     useEffect(() => {
         getUserDataById();
@@ -45,10 +46,11 @@ const FollowCard = (props) => {
     }
     return (
         <>
-            <div className="justify-content-between align-items-center friend-state" >
+        
+            <div className="justify-content-between align-items-center friend-state" onClick={() => detailPage(`userDetail/${props.fId}`)} >
                 <div>
                     <div style={{float:"left"}}>
-                        <img className="rounded-circle" src={avatar} width="40" alt="" />
+                        <img className="rounded-circle activator" src={pagaData ? pagaData.image : ''} width="35" height="35" alt="" />
                     </div>
                     <div className='row'>
                         <Col xs={6}>

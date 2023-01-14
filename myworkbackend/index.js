@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-
 const usersRoute = require("./routes/user");
 const authRoute = require("./routes/auth");
 const followRoute = require("./routes/follow");

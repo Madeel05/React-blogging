@@ -88,5 +88,16 @@ router.post('/like/:id', verificationToken, async (req, res) => {
     }
   }
 });
+
+// delete post by id 
+
+router.delete('/:id/:postId' , verificationTokenAndAuthorization , async (req, res) => {
+    try{
+        const deleteData = await Post.findByIdAndDelete(req.params.postId);
+        res.json(deleteData).status(200);
+    }catch(error){
+      res.json(error).status(404);
+    }
+});
 module.exports = router;
 
