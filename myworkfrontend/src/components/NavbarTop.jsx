@@ -1,6 +1,6 @@
 import React from 'react';
-import { Form, Button, Navbar, NavbarBrand, Container, Nav, NavDropdown } from 'react-bootstrap';
-import { Search } from '@mui/icons-material';
+import { Navbar, NavbarBrand, Container, Nav, NavDropdown } from 'react-bootstrap';
+// import { Search } from '@mui/icons-material';
 import { Link } from "react-router-dom";
 import { logOut } from '../redux/userRedux';
 import { useDispatch } from 'react-redux';
@@ -42,17 +42,17 @@ const NavbarTop = () => {
                     <Navbar.Collapse id='responsive-navbar-nav'>
 
                         <Nav className='mx-auto'>
-                            <Nav.Link className='text-dark link-style' href="/">
+                            <Nav.Link className='text-dark link-style'as={Link} to="/">
                                 Home
                             </Nav.Link>
-                            <Nav.Link className='text-dark link-style' href="/feed">
+                            <Nav.Link className='text-dark link-style' as={Link} to="/feed">
                                 Feeds
                             </Nav.Link>
-                            <Nav.Link className='text-dark link-style' href='/following'>
+                            <Nav.Link className='text-dark link-style' as={Link} to='/following'>
                                 Following & Followers
                             </Nav.Link>
                             <NavDropdown title="profile" className='text-dark link-style' id="collasible-nav-dropdown">
-                                <NavDropdown.Item href='/profile'>View Profile</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to='/profile'>View Profile</NavDropdown.Item>
                                 <NavDropdown.Item href='#' onClick={() => logout()}>Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>

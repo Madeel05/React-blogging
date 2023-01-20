@@ -45,13 +45,12 @@ const UserCard = (props) => {
 
     return (
         <>
-        {console.log(props.data)}
-            <div className="d-flex justify-content-between align-items-center friend-state" onClick={() => detailPage(`userDetail/${props.id}`)}>
+            <div className="d-flex justify-content-between align-items-center friend-state">
                 <div className="d-flex">
                     <div>
-                    <img className="rounded-circle activator" src={props.data ? props.data.image : ''} width="35" height="35" alt="" />
+                    <img className="rounded-circle activator" onClick={() => detailPage(`userDetail/${props.id}`)} src={props.data ? props.data.image : ''} width="35" height="35" alt="" />
                     </div>
-                    <div className="mx-2 my-1 h7">
+                    <div className="mx-2 my-1 h7" onClick={() => detailPage(`userDetail/${props.id}`)}>
                         {props.name}
                     </div>
                 </div>

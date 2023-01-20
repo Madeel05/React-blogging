@@ -47,7 +47,7 @@ const FollowCard = (props) => {
     return (
         <>
         
-            <div className="justify-content-between align-items-center friend-state" onClick={() => detailPage(`userDetail/${props.fId}`)} >
+            <div className="justify-content-between align-items-center friend-state" onClick={() => detailPage(`/userDetail/${props.fId}`)} >
                 <div>
                     <div style={{float:"left"}}>
                         <img className="rounded-circle activator" src={pagaData ? pagaData.image : ''} width="35" height="35" alt="" />

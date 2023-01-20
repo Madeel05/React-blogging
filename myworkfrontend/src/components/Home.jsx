@@ -41,7 +41,7 @@ const Home = () => {
 
     const getRandomUser = async () => {
         try {
-            const random = await userRequest.get('users/random/5');
+            const random = await userRequest.get('users/random/10');
             setRandomUser(random.data);
         } catch (err) {
             console.log(err)

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CalendarMonthTwoTone, ThumbUp, Comment, Share, ArrowDropDown } from '@mui/icons-material';
+import { CalendarMonthTwoTone, ThumbUp, Share } from '@mui/icons-material';
 import { Card, Dropdown, DropdownButton } from 'react-bootstrap';
 import { clientRequest, userRequest } from '../axiosRequestFunc';
 import { Alert } from './Alert';
@@ -27,7 +27,7 @@ const Post = (props) => {
 
     const deletePost = async (id) => {
         try {
-            const delete_post = await userRequest.delete(`posts/${userId}/${id}`);
+             await userRequest.delete(`posts/${userId}/${id}`);
             if (props.page === 'home') {
                 props.countFunction();
             }
@@ -75,7 +75,6 @@ const Post = (props) => {
 
     return (
         <>
-    
             <Card className='gedf-card my-3 mr-2 ml-2'>
                 <Card.Header>
                     <div className="d-flex justify-content-between align-items-center">
@@ -89,7 +88,7 @@ const Post = (props) => {
                             </div>
                         </div>
                         <div id={`delete_${props.data._id}`}>
-                            <DropdownButton className='btn-sm btn-icon' size='sm' id="dropdown-basic-button" title={<ArrowDropDown />}>
+                            <DropdownButton className='btn-icon' variant="primary" size='md'  id="dropdown-basic-button" title=''>
                                 <Dropdown.Item href="#" onClick={() => deletePost(props.data._id)}>Delete</Dropdown.Item>
                             </DropdownButton>
                         </div>
