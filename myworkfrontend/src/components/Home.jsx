@@ -9,7 +9,6 @@ import { clientRequest, userRequest } from '../axiosRequestFunc';
 
 
 const userId = JSON.parse(localStorage.getItem("persist:root")) != null && JSON.parse(JSON.parse(localStorage.getItem("persist:root")).currentUser) != null ? JSON.parse(JSON.parse(localStorage.getItem("persist:root")).currentUser)._id : null;
-
 const Home = () => {
     const [key, setKey] = useState('published');
     const [userData, setUserData] = useState({});
