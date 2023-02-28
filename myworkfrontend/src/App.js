@@ -9,9 +9,7 @@ const PostPage = React.lazy(() => import('./components/PostPage'));
 const Following = React.lazy(() => import('./components/Following'));
 const Profile = React.lazy(() => import('./components/Profile'));
 const UserDetail = React.lazy(() => import('./components/UserDetail'));
-
-
-
+const Error = React.lazy(() => import('./components/Error'));
 
 
 function App() {
@@ -27,7 +25,8 @@ function App() {
         <Route path="feed" element={user_logged == null ? <Navigate to="/login" /> : <PostPage />} />
         <Route path="following" element={user_logged == null ? <Navigate to="/login" /> : <Following />} />
         <Route path="profile" element={user_logged == null ? <Navigate to="/login" /> : <Profile />} />
-        <Route path="userDetail/:id" element={user_logged == null ? <Navigate to="/login" /> : <UserDetail />} />
+        <Route path="userDetail/:id" element={user_logged == null ? <Navigate to="/login" /> : <UserDetail />} />\
+        <Route path="*" element={<Error/>}/>
       </Routes>
     </Suspense>
   );
